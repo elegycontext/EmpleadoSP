@@ -4,93 +4,52 @@ import java.io.*;
 
 public class Empleado {
     
-    //Atributos del empleado.
-    String nombre = "";
-    int produccion;
-    double sueldo;
+    private int Produccion;
+    private int Sueldo;
+    private String NomObr;
+    public int produccion;
+    public int sueldo;
+    public String nombre;
     
-    //Metodo para registrar el nombre del empleado.
-    void Rnombre() throws IOException{
-        
-        BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
-        
-        boolean x = true;
-        
-        while (x != false)
-        {
-            try
-            {
-            System.out.print("Ingrese el nombre del empleado: ");
-            nombre = br.readLine();
-            
-            x = false;
-            }
-             catch(Exception e)
-            {
-                System.err.println("Se produjo un Error: " + e.getMessage() + ".Por favor vuelva a ingresar los datos");
-            }
-            finally
-            {
-                System.out.println("Proceso terminado satisfactoriamente.");
-            }
-        }
+    void empleadofunciones(){
+        Produccion = 0;
+        Sueldo = 0;
+        NomObr = "";
+    }
+    void obtenerNombre(String nombre){
+        NomObr = nombre;
+        this.nombre = nombre;
     }
     
-    //Metodo para registrar la produccion del empleado.
-    void Rproduccion() throws IOException{
-        
-        BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
-        
-        boolean x = true;
-        
-        while (x != false)
-        {
-            try
-            {
-            System.out.print("Ingrese la produccion del empleado: ");
-            produccion = Integer.parseInt(br.readLine());
-            
-            x = false;
-            }
-             catch(Exception e)
-            {
-                System.err.println("Se esperaba un numero entreo y usted introdujo: " + e.getMessage() + ".Por favor vuelva a ingresar los datos");
-            }
-            finally
-            {
-                System.out.println("Proceso terminado satisfactoriamente.");
-            }
-        }
+    void obtenerProduccion(int produccion){
+        Produccion = produccion;
+        this.produccion = produccion;
     }
     
-    //Metodo para calcular el sueldo del empleado.
-    void Rsueldo(){
-        if (produccion <= 500){
-            sueldo = produccion * 20;
+    int obtenerSueldo(){
+        if (Produccion <= 500) {
+            Sueldo = Produccion * 20;
         }
         else{
-            if (produccion > 800){
-                sueldo = produccion * 30;
+            if (Produccion > 500 && Produccion < 800){
+                Sueldo = Produccion * 25;
             }
             else {
-                sueldo = produccion * 25;
+                Sueldo = Produccion * 30;
             }
         }
-        System.out.println("El sueldo ha sido calculado satisfactoriamente"); //para mostrarle al usuario que ya se calculo el sueldo
+        sueldo = Sueldo;
+        return sueldo;
     }
     
-    //Metodo para mostrar el nombre del empleado.
-    void MosNombre (){
-        System.out.println("El nombre del empleado es: " + nombre);
+    void mosNombre(){
+        System.out.println("El nombre del obrero es " + NomObr);
     }
     
-    //Metodo para mostar la produccion del empleado.
-    void MosProduccion() {
-        System.out.println("La produccion del empleado fue: " + produccion);
+    void mosProduccion(){
+        System.out.println("La produccion del obrero "+ NomObr+ "es: " + Produccion);
     }
-    
-    //Metodo para mostrar el sueldo del empleado.
-    void MosSueldo() {
-        System.out.println("El sueldo del empleado es: " + sueldo);
+    void mosSueldo(){
+        System.out.println("El sueldo del obrero " + NomObr + "es: " + Sueldo);
     }
 }
