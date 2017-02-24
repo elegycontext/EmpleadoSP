@@ -76,6 +76,7 @@ public class Empleado {
                 sueldo = produccion * 25;
             }
         }
+        System.out.println("El sueldo ha sido calculado satisfactoriamente"); //para mostrarle al usuario que ya se calculo el sueldo
     }
     
     //Metodo para mostrar el nombre del empleado.
