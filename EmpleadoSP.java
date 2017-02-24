@@ -15,17 +15,24 @@ public class EmpleadoSP {
 
     public static void main(String[] args) throws IOException{
         
-        BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+       BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
         
         String opcion;
         String opcion2;
         boolean continuar = true;
+        String nombre = "";
+        int produccion = 0;
         
-        Empleado empleado = new Empleado();
+        Empleado Empleado = new Empleado();
         
-        //Menu de operaciones
-        try{
-            while (continuar != false){
+            System.out.println("|-------------------------------------------------------|\n"
+                             + "|                                                       |\n"
+                             + "|      Bienvenidos al sistema de registro de obreros    |\n"
+                             + "|                                                       |\n"
+                             + "|-------------------------------------------------------|\n");
+        try {
+            
+              while (continuar != false){
                 System.out.println("Ingrese la opcion correspondiente a la operacion "
                         + "que desea realizar\nA.- Asignar nombre de empleado.\n"
                         + "B.- Asignar produccion de empleado.\nC.- Calcular "
@@ -36,23 +43,24 @@ public class EmpleadoSP {
                 
                 switch(opcion.toLowerCase()){
                     case ("a"):
-                        empleado.Rnombre();
+                        System.out.println("Ingrese el nombre del obrero");
+                        nombre = br.readLine();
+                        Empleado.obtenerNombre(nombre);
                         break;
                     
                     case ("b"):
-                        empleado.Rproduccion();
+                        System.out.println("Ingrese la cantidad de produccion del obrero");
+                        produccion = Integer.parseInt(br.readLine());
+                        Empleado.obtenerProduccion(produccion);
                         break;
                     
                     case ("c"):
-                        empleado.Rsueldo();
+                        Empleado.obtenerSueldo();
                         break;
                     
                     case ("d"):
                         //Se valida que se registro el nombre del empleado.
-                        if(empleado.nombre != ""){
-                            empleado.MosNombre();
-                        }
-                        else{
+                        if(nombre.equals("")){
                             System.out.println("No se a registrado un nombre. "
                                     + "Registrelo para luego visualizarlo?(S/N)");
                             opcion2 = br.readLine();
@@ -61,15 +69,20 @@ public class EmpleadoSP {
                                 case("n"):
                                     break;
                                 default:
-                                    empleado.Rnombre();
-                            }
-                            empleado.MosNombre();
+                                    System.out.println("Ingrese el nombre del obrero");
+                                    nombre = br.readLine();
+                                    Empleado.obtenerNombre(nombre);                            
                         }
+                        }
+                        else{
+                              Empleado.mosNombre();
+                            }
+                        
                         break;
                         
                     case ("e"):
                         //Se valida que se registro la produccion del empleado.
-                        if(empleado.produccion < 1){
+                        if(produccion < 1){
                             System.out.println("Quiza olvido introducir la "
                                     + "produccion del empleado\n\nDesea "
                                     + "registrar la produccion ahora?(S/N)");
@@ -80,15 +93,17 @@ public class EmpleadoSP {
                                     break;
                                     
                                 default:
-                                    empleado.Rproduccion();
+                                    System.out.println("Ingrese la cantidad de produccion del obrero");
+                                    produccion = Integer.parseInt(br.readLine());
+                                    Empleado.obtenerProduccion(produccion);
                             }
                         }
-                        empleado.MosProduccion();
+                        Empleado.mosProduccion();
                         break;
                     
                     case ("f"):
                         //Se valida tanto que se registro la produccion del empleado como si se calculo el sueldo.
-                        if((empleado.produccion < 1)||(empleado.sueldo < 1)){
+                        if((Empleado.produccion < 1)||(Empleado.sueldo < 1)){
                             System.out.println("Quiza olvido introducir la "
                                     + "produccion del empleado o calcular el "
                                     + "sueldo del empleado.\n\nDesea "
@@ -100,12 +115,14 @@ public class EmpleadoSP {
                                     break;
                                     
                                 default:
-                                    empleado.Rproduccion();
-                                    empleado.Rsueldo();
+                                    System.out.println("Ingrese la cantidad de produccion del obrero");
+                                    produccion = Integer.parseInt(br.readLine());
+                                    Empleado.obtenerProduccion(produccion);
+                                    Empleado.obtenerSueldo();
                                     
                             }
                     }
-                        empleado.MosSueldo();
+                        Empleado.mosSueldo();
                         break;
                         
                     case ("x"):
